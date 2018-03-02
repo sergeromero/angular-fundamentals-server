@@ -1,0 +1,27 @@
+{
+  "name": "apievents",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeromero/angular-fundamentals-server.git"
+  },
+  "author": "Sergio Romero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergeromero/angular-fundamentals-server/issues"
+  },
+  "homepage": "https://github.com/sergeromero/angular-fundamentals-server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}
