@@ -55,6 +55,24 @@ router.put('/updateevent', (req, res) => {
     EVENTS[index] = event;
 });
 
+router.get('/sessions/search/', (req, res) => {
+  let term = req.query.search.toLocaleLowerCase();;
+  let results = new Array();
+  
+  EVENTS.forEach(event => {
+    let matchingSessions = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
+    
+    matchingSessions = matchingSessions.map((session) => {
+      session.eventId = event.id;
+      return session;
+    });
+
+    results = results.concat(matchingSessions);
+  });
+
+  res.json(results);
+});
+
 app.use('/api', router);
 
 app.listen(port, () => {
