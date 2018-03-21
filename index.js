@@ -96,6 +96,21 @@ router.get('/sessions/search/', (req, res) => {
   res.json(results);
 });
 
+router.post('/login', (req, res) => {
+  let username = req.body.username;
+  let password = req.body.password;
+
+  if(username.toLocaleLowerCase() != "serge"){
+    res.status(401);
+  }
+  res.json({user: {
+      id: 1,
+      firstName: 'Sergio',
+      lastName: 'Romero',
+      userName: 'Serge'
+  }});
+});
+
 app.use('/api', router);
 
 app.listen(port, () => {
