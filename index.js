@@ -35,6 +35,7 @@ router.get('/events', (req, res) => {
 
 router.get('/events/:id', (req, res) => {
     let event = EVENTS.find(event => event.id === +req.params.id);
+    
     res.json(event);
 });
 
@@ -47,6 +48,28 @@ router.post('/events/new', (req, res) => {
     EVENTS.push(newEvent);
 
     res.json(newEvent);
+});
+
+router.post('/events/:eventId/sessions/:sessionId/voters/:voterName', (req, res) => {
+  let eventId = req.params.eventId;
+  let sessionId = req.params.sessionId;
+  let voterName = req.params.voterName;
+
+  let event = EVENTS.find(event => event.id === +eventId);
+  let session = event.sessions.find(session => session.id == +sessionId);
+
+  session.voters.push(voterName);
+});
+
+router.delete('/events/:eventId/sessions/:sessionId/voters/:voterName', (req, res) => {
+  let eventId = req.params.eventId;
+  let sessionId = req.params.sessionId;
+  let voterName = req.params.voterName;
+
+  let event = EVENTS.find(event => event.id === +eventId);
+  let session = event.sessions.find(session => session.id == +sessionId);
+
+  session.voters = session.voters.filter(voter => voter !== voterName);
 });
 
 router.put('/updateevent', (req, res) => {
