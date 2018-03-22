@@ -9,6 +9,8 @@ app.use(bodyParser.json());
 
 const router = express.Router();
 
+let user;
+
 // Add headers
 app.use(function (req, res, next) {
 
@@ -103,12 +105,18 @@ router.post('/login', (req, res) => {
   if(username.toLocaleLowerCase() != "serge"){
     res.status(401);
   }
-  res.json({user: {
-      id: 1,
-      firstName: 'Sergio',
-      lastName: 'Romero',
-      userName: 'Serge'
-  }});
+
+  user = {
+    id: 1,
+    firstName: 'Sergio',
+    lastName: 'Romero',
+    userName: 'Serge'
+  };
+  res.json({user: user});
+});
+
+router.get('/currentIdentity', (req, res) => {
+  res.json(user);
 });
 
 app.use('/api', router);
