@@ -119,6 +119,21 @@ router.get('/currentIdentity', (req, res) => {
   res.json(user);
 });
 
+router.put('/users/:id', (req, res) => {
+  let userId = req.params.id;
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+
+  user.firstName = firstName;
+  user.lastName = lastName;
+  res.sendStatus(200);
+});
+
+router.post('/logout', (req, res) => {
+  user = undefined;
+  res.sendStatus(200);
+});
+
 app.use('/api', router);
 
 app.listen(port, () => {
